@@ -23,9 +23,36 @@ where department_id in (20,30);
 select * from employees where first_name like '_a%a';
 
 --Get a list of all employees from the 50s and the 80th Department,
-which have a bonus (commission). Sort lines by email
-(increasing order) using his sequential number.
+--which have a bonus (commission). Sort lines by email
+--(increasing order) using his sequential number.
 
 select * from employees
     where department_id in(50,80) and commission_pct is not NULL 
     order by email;
+    
+--Get list of employees whose names contains at least 2 letters of 'n'
+Select * from employees
+    where first_name like '%n%n%';
+
+--Get list of all employess whose names longer than 4 letters. Order by department's number.(descending 1order) so that the values "null" are at the very end.
+Select * from employees 
+    where first_name > '%_____%'
+    order by department_id desc nulls last;
+
+--Get list of employeeds whose salary between 3000 and 7000. They don't have commission and there job id are PU_CLERK, ST_MAN or ST_CLERK
+select * from employees
+    where salary between 3000 and 7000 and
+    commission_pct is null and job_id in ('PU_CLERK','ST_MEN', 'ST_CLEARK');
+    
+???????? ?????? ???? ??????????? ? ??????? ? ????? ??????????
+?????? '%'.
+--Cet list of employees whose names contains '%'
+select * from employees 
+    where first_name like '%\%%'escape '\';
+    
+-- -Get information about job_id, name and salary for workers whose working id is greater than or equal to 120 and job_id is not equal to IT_PROG.
+--Sort strings by job_id (increasing order) and names (descending order).
+select * from employees;
+select job_id, first_name, salary from employees
+    where employee_id >= 120 and job_id != 'it_prog'
+    order by job_id , first_name desc;
